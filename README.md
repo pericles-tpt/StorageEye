@@ -3,3 +3,4 @@ A tool that checks the remaining disk space every periodically (decided by the u
 
 Features
 - Intelligent folder prioritisation: Prioritises folders that  recur a lot in scans in future scans so that the program becomes less intensive as it does more scans
+- See changes to drive and revert them like github???
