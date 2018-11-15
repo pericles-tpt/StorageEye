@@ -1,6 +1,5 @@
 class Directory:
-    def __init__(self, directoryName, parentDir=None):
-        self.parent = parentDir
+    def __init__(self, directoryName):
         self.name = directoryName
 
     children = []
