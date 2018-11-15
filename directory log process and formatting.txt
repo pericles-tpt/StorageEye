@@ -5,6 +5,9 @@ C:\Program Files\.. (x86) [2]
 C:\Program Files\.. [2]
 C:\Games\.. [2]
 
+FORMAT: depth + directory + '|' + size + 'B'
+               2C:\Program Files\steam|10GB
+
 For other drives (D:\, E:\, etc) can also go two layers deep unless the user 
 states otherwise
 
