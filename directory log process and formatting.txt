@@ -1,0 +1,45 @@
+For C drive should only need to go two levels deep with an exception for the "Users" folder, these are all the "Big" folders on my drive
+C:\Users\firstname lastname\.. [3]
+C:\Program Data\.. [2]
+C:\Program Files\.. (x86) [2]
+C:\Program Files\.. [2]
+C:\Games\.. [2]
+
+For other drives (D:\, E:\, etc) can also go two layers deep unless the user 
+states otherwise
+
+C:\Windows [2] -> should have different behaviour for this folder i.e. If there
+is a remaining capacity delta between old and new log should redirect to windows
+in-built system cleanup functionality for user to rectify
+
+Even though the drive "scan" only goes 2 to 3 levels deep the user can be given
+the option to "investigate" a folder which will do a full scan as deep as possible
+into the folder and give a readout of the biggest folders and files 
+
+For writing folder\files to txt file should compare current directory entries to 
+"old" dirlog file and if an entry doesn't exist it should be added to both the new
+and the old file
+
+E.G. with new entry 2C:\Program Files\theme gen|200MB
+2C:\Program Files\steam|10GB          2C:\Program Files\steam|10GB
+2C:\Program Files\trello|500MB        2C:\Program Files\theme gen|200MB
+                                      2C:\Program Files\trello|500MB
+
+ELEMENT STORED IN BUFFER TO WRITE TO FILE E.G. ("3C:\Program Files\Prime 95|25M")
+SIZE ~ 1 + 3 + 51 + 50 + 4 = 109 bytes?
+
+0C:\|97MB
+1C:\Program Files|21GB
+2C:\Program Files\vscode|500MB
+2C:\Program Files\steam|10GB
+2...
+2
+2
+2
+...
+1C:\Program Files(x86)|30GB
+2C:\Program Files(x86)\bigprogram|5GB
+2C:\Program Files(x86)\anotherprogram|2GB
+1C:\Users|10GB
+2C:\Users\firstname lastname|9.5GB
+3C:\Users\firstname lastname\atom|100MB
