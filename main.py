@@ -1,4 +1,3 @@
-import sys #Can get rid of this later
 from os import walk
 from os.path import join, getsize
 from classes import Directory, File
@@ -9,12 +8,11 @@ def build_Directory(directoryName):
 
     for (dirpath, childdirs, filenames) in walk(directory.name): 
 
-        for file in filenames:
-            directory.files.append(File(file, getsize(join(dirpath, file))))
-        directory.files.extend(filenames)
+        for filename in filenames:
+            directory.files.append(File(filename, getsize(join(dirpath, filename))))
 
-        for child in childdirs:
-            directory.children.append(build_Directory(join(directory.name, child)))
+        for childdir in childdirs:
+            directory.children.append(build_Directory(join(dirpath, childdir)))
 
         break
     
