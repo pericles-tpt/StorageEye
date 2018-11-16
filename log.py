@@ -21,7 +21,7 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 	# Finding out what drive the user wants to run the program on
 	drive_letter = '0'
 
-	while (!(drive_letter >= 'A' && drive_letter <= 'Z') || !(drive_letter >= 'a' && drive_letter <= 'z')):
+	while (not(drive_letter >= 'A' and drive_letter <= 'Z') or not(drive_letter >= 'a' and drive_letter <= 'z')):
 		print("Which drive (please input drive letter) do you want to monitor space on?")
 		drive_letter = input()
 
@@ -32,7 +32,7 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 
 	# Finding out how much space the user wants to monitor on the drive
 	print("How much space (in gigabtytes) do you want to reserve?")
-    threshold = input()
+	threshold = input()
     print >> properties, "threshold: " + str(threshold)
 
 # Determines how deep a directory is within the drive (i.e. +1 for every \ in the directory)
@@ -57,15 +57,13 @@ def log_DirectoryOld(directoryName):
 
 	while (depth <= 2):
 		depth = depth_directory(directoryName)
-		for file in filenames:
+		for file in filenames: 
 			size_bytes = getsize(directoryName + '\\' + file)
-			size = size(size_bytes, system=si)
-			print >> directory_old, depth + directoryName + '\\' + file + '|' + size + 'B'
+			print >> directory_old, directoryName + '\\' + file + '|' + size_bytes
 
 		for child in childdirs:
 			size_bytes = getsize(directoryName + '\\' + child)
-			size = size(size_bytes, system=si)
-			print >> directory_old, depth + directoryName + '\\' + child + '|' + size + 'B'
+			print >> directory_old, directoryName + '\\' + child + '|' + size_bytes
 			log_DirectoryOld(directoryName):
 
 def log_DirectoryNew(directoryName, exceptionDirectoryName):

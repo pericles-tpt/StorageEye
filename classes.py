@@ -3,6 +3,7 @@ class Directory:
         self.name = directoryName
         self.children = []
         self.files = []
+        self.size = 0
 
 class File:
     def __init__(self, name, size):
