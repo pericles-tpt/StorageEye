@@ -28,7 +28,7 @@ def print_directory(directory, depth=0):
 
 
 if __name__ == "__main__":
-    path = r"c:\users\anthony.klepac\desktop\test folder"
+    path = ""
     rootDirectory = build_directory(path)
     print_directory(rootDirectory)
 
