@@ -1,26 +1,27 @@
 from os import walk
 from os.path import join, getsize
 from classes import Directory, File
+import log
 import sys
+
+dirpath = sys.path[0]
 
 def build_directory(directoryName):
     directory = Directory(directoryName)
 
     for (dirpath, childdirs, filenames) in walk(directory.name): 
 
-        for filename in filenames:\
-            newfile = File(filename, getsize(join(dirpath, filename)))
-            directory.files.append(newfile)
-            directory.size += newfile.size
+        for filename in filenames:
+            directory.files.append(File(filename, getsize(join(dirpath, filename))))
+            directory.size += filename.size
         for childdir in childdirs:
-            newdir = build_directory(join(dirpath, childdir))
-            directory.children.append(newdir)
-            directory.size += newdir.size
+            directory.children.append(build_directory(join(dirpath, childdir)))
+            directory.size += childdir.size
         break
     return directory
 
 def print_directory(directory, depth=0):
-    whitespace = 4*' '
+    whitespace = 4*' ' 
 
     print("{}{}\n".format(depth*whitespace, directory.name))
 
@@ -29,11 +30,11 @@ def print_directory(directory, depth=0):
     for child in directory.children:
         print_directory(child, depth+1)
 
-
 if __name__ == "__main__":
     path = ""
     rootDirectory = build_directory(path)
     print_directory(rootDirectory)
+
 
 
     
