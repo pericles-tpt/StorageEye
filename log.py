@@ -1,6 +1,6 @@
 import sys
 from os import listdir
-from os.path import join, getsize
+from os.path import join, getsize, isdir
 from classes import Directory
 from platform import system
 
@@ -54,22 +54,23 @@ def print_selection(OS):
 
 	i = 0
 
-	# Anthony you'll have to test this on your computer
-	if "Windows" in OS:
+	if "Windows" in OS: # Anthony you'll have to test this on your computer
 		print("I'm Windows")
 		dl = char('A')
 		while (dl <= 90):
-			if (os.path.isdir(dl + ":\\") == 1):
+			if (isdir(dl + ":\\") == 1):
 				print(dl + ":\\")
 				dl += 1
-			elif (os.path.isdir(dl + ":\\") == 0):
+			elif (isdir(dl + ":\\") == 0):
 				dl += 1
 
 	if "Darwin" in OS: #It's a Mac
 		disks = listdir("/Volumes")	
-		print(disks)
+		for names in disks:
+			print(disks[i])
+			i += 1
 
-	# Will deal with Linux case later	
+	# Will deal with Linux case later seems to be a bit of a pain...	
 	"""if "Linux" in OS:
 	directory = Directory(/Volumes)
 	for child in childdirs:
@@ -78,11 +79,19 @@ def print_selection(OS):
 # Gets relevant user information for directory scan
 if getsize(join(dirpath, name_dirlog_old)) == 0:
 	
+	i = 0
+
 	# Finding out what drive the user wants to run the program on
-	print("Which drive do you want to monitor space on?")
+	print("Which drive do you want to monitor space on?\n")
 	print_selection(OS)
+	print("")
+
+	# Get user input for which drive they want - NEEDS WORK
+	selected = raw_input()
+	print("The selected drive is: " + selected)
+	print("")
 
 	# Finding out how much space the user wants to monitor on the drive
-	print("How much space (in gigabtytes) do you want to reserve?")
+	print("How much space (in gigabtytes) do you want to reserve?\n")
 	threshold = input()
     #print >> properties, "threshold: " + str(threshold) - TEMPORARILY DISABLED TO COMPILE
