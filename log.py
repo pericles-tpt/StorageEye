@@ -5,6 +5,7 @@ from classes import Directory
 from platform import system
 
 dirpath = sys.path[0]
+disks = []
 OS = system() # Darwin = Mac, Linux = Linux, Windows = Windows
 
 # Need a dirlog_old and a dirlog_new
@@ -49,12 +50,12 @@ def log_DirectoryOld(directoryName):
 			log_DirectoryOld(directoryName)
 
 #def log_DirectoryNew(directoryName, exceptionDirectoryName): - TEMPORARILY DISABLED TO COMPILE
-
+disks
 def print_selection(OS):
 
 	i = 0
-
-	if "Windows" in OS: # Anthony you'll have to test this on your computer
+	# Anthony you'll have to test this on your computer
+	if "Windows" in OS: 
 		print("I'm Windows")
 		dl = char('A')
 		while (dl <= 90):
@@ -76,22 +77,23 @@ def print_selection(OS):
 	for child in childdirs:
 		print()"""
 
-# Gets relevant user information for directory scan
-if getsize(join(dirpath, name_dirlog_old)) == 0:
-	
-	i = 0
+selected = ""
+def uinput_drive():
 
-	# Finding out what drive the user wants to run the program on
 	print("Which drive do you want to monitor space on?\n")
 	print_selection(OS)
 	print("")
-
-	# Get user input for which drive they want - NEEDS WORK
 	selected = raw_input()
-	print("The selected drive is: " + selected)
-	print("")
+	print("You've selected: " + selected + "\n")
 
-	# Finding out how much space the user wants to monitor on the drive
+def uinput_space():	
 	print("How much space (in gigabtytes) do you want to reserve?\n")
 	threshold = input()
-    #print >> properties, "threshold: " + str(threshold) - TEMPORARILY DISABLED TO COMPILE
+	print >> properties, "threshold: " + str(threshold) 
+
+# Gets relevant user information for directory scan
+if getsize(join(dirpath, name_dirlog_old)) == 0:
+	
+	uinput_drive()
+	uinput_space()
+
