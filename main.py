@@ -8,7 +8,7 @@ def build_directory(directoryName):
 
     for (dirpath, childdirs, filenames) in walk(directory.name): 
 
-        for filename in filenames:\
+        for filename in filenames:
             newfile = File(filename, getsize(join(dirpath, filename)))
             directory.files.append(newfile)
             directory.size += newfile.size

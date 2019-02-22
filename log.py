@@ -1,10 +1,11 @@
 import sys
+sys.path.append("/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/hurry/filesize/__init__.py")
 from os.path import join, getsize
-from main import build_Directory
+from main import build_directory
 from hurry.filesize import size, si
 
 dirpath = sys.path[0]
-exceptionDirectoryName = os.environ['HOME'] # Getting user directory which goes 3 layers deep as opposed to 2
+# exceptionDirectoryName = os.environ['HOME'] Getting user directory which goes 3 layers deep as opposed to 2
 
 # Need a dirlog_old and a dirlog_new
 dirlog_old = open("dirlog_old.txt", "a+")
@@ -32,8 +33,8 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 
 	# Finding out how much space the user wants to monitor on the drive
 	print("How much space (in gigabtytes) do you want to reserve?")
-	threshold = input()
-    print >> properties, "threshold: " + str(threshold)
+	threshold = int(input())
+	print >> properties, "threshold: " + str(threshold)
 
 # Determines how deep a directory is within the drive (i.e. +1 for every \ in the directory)
 def depth_Directory(directoryName):
@@ -41,7 +42,7 @@ def depth_Directory(directoryName):
     depth = 0
     while (directoryName[i] != '\0'):
 
-        if directoryName[i] == '\':
+        if directoryName[i] == '\'':
             depth+=1
             i+=1
 
@@ -64,7 +65,7 @@ def log_DirectoryOld(directoryName):
 		for child in childdirs:
 			size_bytes = getsize(directoryName + '\\' + child)
 			print >> directory_old, directoryName + '\\' + child + '|' + size_bytes
-			log_DirectoryOld(directoryName):
+			log_DirectoryOld(directoryName)
 
-def log_DirectoryNew(directoryName, exceptionDirectoryName):
+#def log_DirectoryNew(directoryName, exceptionDirectoryName):
 
