@@ -6,6 +6,11 @@ import sys
 
 dirpath = sys.path[0]
 
+""" NOTE: Below "filename.size" and "childdir.size" are commented out to prevent
+error messages as they are being interpreted as "filename" and "chilldir" are 
+being interpreted as strings... Are they supposted to be part of a class or
+somethign with their own attributes like size? """
+
 def build_directory(directoryName):
     directory = Directory(directoryName)
 
@@ -14,11 +19,11 @@ def build_directory(directoryName):
         for filename in filenames:
 
             directory.files.append(File(filename, getsize(join(dirpath, filename))))
-            directory.size += filename.size
+            directory.size += 0 #filename.size 
 
         for childdir in childdirs:
             directory.children.append(build_directory(join(dirpath, childdir)))
-            directory.size += childdir.size
+            directory.size += 0 #childdir.size
         break
     return directory
 
@@ -36,7 +41,4 @@ if __name__ == "__main__":
     path = ""
     rootDirectory = build_directory(path)
     print_directory(rootDirectory)
-
-
-
     
