@@ -1,3 +1,6 @@
-
+drive: Macintosh HD
 threshold: 50
+drive: Macintosh HD
+threshold: 50
+drive: Macintosh Hd
 threshold: 50
