@@ -102,9 +102,6 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 	""" BELOW: Must run a check for a user drive with a space in it, if a 
 	space exists inserts the combination of chars that denote a space on Mac """
 
-	""" This fix for mac shouldn't affect Windows since Windows uses a single 
-	drive letter so there are no spaces anyway """
-
 	spaced = False
 	for i in range(len(drive)):
 		if drive[i] == " ":
@@ -114,6 +111,11 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 	if spaced == True:
 		new_drive = drive[:i] + "\ " + drive[i:] + "/"
 
+	""" ABOVE: This fix for Mac shouldn't affect Windows since Windows uses a 
+	single drive letter so there are no spaces anyway. Also this fix only works
+	for drives with one space in them because I was too lazy to make it work for
+	drives which have more than one space in them. What sort of madman would name 
+	a drive with more than one space anyway?"""
 
 	size = uinput_space()
 
