@@ -12,8 +12,10 @@ def build_directory(directoryName):
     for (dirpath, childdirs, filenames) in walk(directory.name): 
 
         for filename in filenames:
+
             directory.files.append(File(filename, getsize(join(dirpath, filename))))
             directory.size += filename.size
+
         for childdir in childdirs:
             directory.children.append(build_directory(join(dirpath, childdir)))
             directory.size += childdir.size

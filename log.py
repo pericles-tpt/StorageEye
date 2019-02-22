@@ -8,6 +8,7 @@ dirpath = sys.path[0]
 disks = []
 OS = system() # Darwin = Mac, Linux = Linux, Windows = Windows
 
+
 # Need a dirlog_old and a dirlog_new
 dirlog_old = open("dirlog_old.txt", "a+")
 dirlog_new = open("dirlog_new.txt", "a+")
@@ -17,14 +18,15 @@ name_dirlog_old = "dirlog_old.txt"
 name_dirlog_new = "dirlog_new.txt"
 name_properties = "properties.txt"
 
-
 # Determines how deep a directory is within the drive (i.e. +1 for every \ in the directory)
 def depth_Directory(directoryName):
     i = 0
     depth = 0
     while (directoryName[i] != '\0'):
 
+
         if directoryName[i] == '\\':
+
             depth+=1
             i+=1
 
@@ -48,6 +50,7 @@ def log_DirectoryOld(directoryName):
 			size_bytes = getsize(directoryName + '\\' + child)
 			print >> directory_old, directoryName + '\\' + child + '|' + size_bytes
 			log_DirectoryOld(directoryName)
+
 
 #def log_DirectoryNew(directoryName, exceptionDirectoryName): - TEMPORARILY DISABLED TO COMPILE
 disks
@@ -88,11 +91,12 @@ def uinput_drive():
 def uinput_space():	
 	print("How much space (in gigabtytes) do you want to reserve?\n")
 	threshold = input()
-	print("threshold: " + str(threshold), file=properties) 
+	print('threshold: ' + str(threshold)), file=properties)
 
 # Gets relevant user information for directory scan
 if getsize(join(dirpath, name_dirlog_old)) == 0:
 	
 	uinput_drive()
 	uinput_space()
+
 
