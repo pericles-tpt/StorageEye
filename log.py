@@ -83,13 +83,12 @@ def uinput_drive():
 	print("Which drive do you want to monitor space on?\n")
 	print_selection(OS)
 	print("")
-	selected = raw_input()
-	print("You've selected: " + selected + "\n")
+	selected = input()
 
 def uinput_space():	
 	print("How much space (in gigabtytes) do you want to reserve?\n")
 	threshold = input()
-	print >> properties, "threshold: " + str(threshold) 
+	print("threshold: " + str(threshold), file=properties) 
 
 # Gets relevant user information for directory scan
 if getsize(join(dirpath, name_dirlog_old)) == 0:
