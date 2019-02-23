@@ -23,9 +23,10 @@ def build_directory(directoryName):
             directory.size += 0 #filename.size 
 
         for childdir in childdirs:
+
             if system() == "Darwin":
                 if childdir != 'Volumes':
-                    if access(childdir, R_OK) == True:
+                    if access(childdir, R_OK) == True: # For some reason this always returns false
                         directory.children.append(build_directory(join(dirpath, childdir)))
                         directory.size += 0 #childdir.size
 
