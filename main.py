@@ -1,4 +1,4 @@
-from os import walk, access, R_OK
+from os import walk, lstat
 from os.path import join, getsize, lexists
 from classes import Directory, File
 from platform import system
@@ -25,16 +25,26 @@ def build_directory(directoryName):
         for childdir in childdirs:
 
             if system() == "Darwin":
-                if childdir != 'Volumes':
-                    if access(childdir, R_OK) == True: # For some reason this always returns false
+                if (childdir != 'Volumes' and childdir != 'EFIROOTDIR' and childdir != 'bin' and childdir != 'sbin' and childdir != 'System' and childdir != 'Library' and childdir != 'usr'):
+                    try:
                         directory.children.append(build_directory(join(dirpath, childdir)))
                         directory.size += 0 #childdir.size
-
+                        #print(directory.name)
+                    except PermissionError: 
+                        pass
+                    except FileNotFoundError: 
+                        pass
+                    except OSError: 
+                        pass
+                else:
+                    pass
+                        
             else:
                 directory.children.append(build_directory(join(dirpath, childdir)))
                 directory.size += 0 #childdir.sizes
 
         break
+
     return directory
 
 def print_directory(directory, depth=0):
