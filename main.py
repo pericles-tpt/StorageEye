@@ -25,7 +25,7 @@ def build_directory(directoryName):
         for childdir in childdirs:
 
             if system() == "Darwin":
-                if (childdir != 'Volumes' and childdir != 'EFIROOTDIR' and childdir != 'bin' and childdir != 'sbin' and childdir != 'System' and childdir != 'Library' and childdir != 'usr'):
+                if (childdir != 'Volumes' and childdir != 'EFIROOTDIR' and childdir != 'bin' and childdir != 'sbin' and childdir != 'System' and childdir != 'Library' and childdir != 'usr'): #Without these last 4 exceptions for folders to scan it take up to an hour to scan only 90GB of files on an SSD
                     try:
                         directory.children.append(build_directory(join(dirpath, childdir)))
                         directory.size += 0 #childdir.size
