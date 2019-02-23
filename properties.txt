@@ -98,3 +98,93 @@ drive: MAC_USB
 threshold: 1
 drive: Macintosh HD
 threshold: 10
+drive: Macintosh HD
+threshold: 10
+drive: Macintosh HD
+threshold: 10
+drive: Macintosh HD
+threshold: 10
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: MAC_USB
+threshold: 1
+drive: MAC_USB
+threshold: 1
+drive: MAC_USB
+threshold: 1
+drive: MAC_USB
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 2
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh hD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1
+drive: Macintosh HD
+threshold: 1

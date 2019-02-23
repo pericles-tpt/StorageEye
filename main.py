@@ -1,6 +1,7 @@
-from os import walk
-from os.path import join, getsize
+from os import walk, access, R_OK
+from os.path import join, getsize, lexists
 from classes import Directory, File
+from platform import system
 import log
 import sys
 
@@ -22,8 +23,16 @@ def build_directory(directoryName):
             directory.size += 0 #filename.size 
 
         for childdir in childdirs:
-            directory.children.append(build_directory(join(dirpath, childdir)))
-            directory.size += 0 #childdir.size
+            if system() == "Darwin":
+                if childdir != 'Volumes':
+                    if access(childdir, R_OK) == True:
+                        directory.children.append(build_directory(join(dirpath, childdir)))
+                        directory.size += 0 #childdir.size
+
+            else:
+                directory.children.append(build_directory(join(dirpath, childdir)))
+                directory.size += 0 #childdir.sizes
+
         break
     return directory
 
