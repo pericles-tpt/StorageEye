@@ -1,57 +1,23 @@
 import sys
 from os import listdir, walk
-from main import build_directory, print_directory
-from os.path import join, getsize, isdir
 from classes import Directory, File
+from os.path import join, getsize, isdir
 from platform import system
+from main import print_directory, print_directory_file, build_directory
 
 dirpath = sys.path[0]
 disks = []
 OS = system() # Darwin = Mac, Linux = Linux, Windows = Windows
 
-
-# Need a dirlog_old and a dirlog_new
-dirlog_old = open("dirlog_old.txt", "a+")
-dirlog_new = open("dirlog_new.txt", "a+")
+# Need a dirlog_original and a dirlog_current
+dirlog_original = open("dirlog_original.txt", "a+")
+dirlog_current = open("dirlog_current.txt", "a+")
 properties = open("properties.txt", "a+")
 
-name_dirlog_old = "dirlog_old.txt"
-name_dirlog_new = "dirlog_new.txt"
+name_dirlog_original = "dirlog_original.txt"
+name_dirlog_current = "dirlog_current.txt"
 name_properties = "properties.txt"
 
-#Determines how deep a directory is within the drive (i.e. +1 for every \ in the directory)
-def depth_Directory(directoryName):
-    i = 0
-    depth = 0
-    while (directoryName[i] != '\0'):
-
-        if directoryName[i] == '\'':
-
-            depth+=1
-            i+=1
-
-        else:
-            i+=1
-
-    return depth
-
-# Writes directory information to the dirlog_old.txt file when dirlog_new.txt doesn't exist 
-def log_DirectoryOld(directoryName):
-	
-	build_Directory(directoryName)
-
-	while (depth <= 2):
-		depth = depth_directory(directoryName)
-		for file in filenames: 
-			size_bytes = getsize(directoryName + '\\' + file)
-			print >> directory_old, directoryName + '\\' + file + '|' + size_bytes
-
-		for childdir in childdirs:
-			size_bytes = getsize(directoryName + '\\' + child)
-			print >> directory_old, directoryName + '\\' + child + '|' + size_bytes
-			log_DirectoryOld(directoryName)
-
-#def log_DirectoryNew(directoryName, exceptionDirectoryName): - TEMPORARILY DISABLED TO COMPILE
 def print_selection(OS):
 
 	i = 0
@@ -79,6 +45,7 @@ def print_selection(OS):
 		print()"""
 
 selected = ""
+
 def uinput_drive():
 
 	print("Which drive do you want to monitor space on?\n")
@@ -89,13 +56,14 @@ def uinput_drive():
 	return selected
 
 def uinput_space():	
+	
 	print("How much space (in gigabtytes) do you want to reserve?\n")
 	threshold = input()
 	print('threshold: ' + str(threshold), file=properties)
 	return threshold
 
 # Gets relevant user information for directory scan
-if getsize(join(dirpath, name_dirlog_old)) == 0:
+if getsize(join(dirpath, name_dirlog_original)) == 0:
 	
 	drive = uinput_drive()
 
@@ -121,10 +89,10 @@ if getsize(join(dirpath, name_dirlog_old)) == 0:
 
 	if "Darwin" in OS:
 		new_log = build_directory("/Volumes/" + drive)
-		print_directory(new_log)
+		print_directory_file(new_log)
 
 	if "Windows" in OS:
 		new_log = build_directory(drive)
-		print_directory(new_log)
+		print_directory_file(new_log)
 
 

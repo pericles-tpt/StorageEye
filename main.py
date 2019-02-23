@@ -2,7 +2,6 @@ from os import walk, lstat
 from os.path import join, getsize, lexists
 from classes import Directory, File
 from platform import system
-import log
 import sys
 
 dirpath = sys.path[0]
@@ -20,16 +19,16 @@ def build_directory(directoryName):
         for filename in filenames:
 
             directory.files.append(File(filename, getsize(join(dirpath, filename))))
-            directory.size += 0 #filename.size 
+            directory.size += getsize(directory.name + '/' + filename)
 
         for childdir in childdirs:
 
+            directory.size += getsize(directory.name + '/' + childdir)
             if system() == "Darwin":
                 if (childdir != 'Volumes' and childdir != 'EFIROOTDIR' and childdir != 'bin' and childdir != 'sbin' and childdir != 'System' and childdir != 'Library' and childdir != 'usr'): #Without these last 4 exceptions for folders to scan it take up to an hour to scan only 90GB of files on an SSD
                     try:
                         directory.children.append(build_directory(join(dirpath, childdir)))
-                        directory.size += 0 #childdir.size
-                        #print(directory.name)
+                        directory.size += getsize(childdir)
                     except PermissionError: 
                         pass
                     except FileNotFoundError: 
@@ -41,7 +40,7 @@ def build_directory(directoryName):
                         
             else:
                 directory.children.append(build_directory(join(dirpath, childdir)))
-                directory.size += 0 #childdir.sizes
+                directory.size += getsize(childdir)
 
         break
 
@@ -56,6 +55,17 @@ def print_directory(directory, depth=0):
         print("{}{}\n".format((depth+1)*whitespace, file.name))
     for child in directory.children:
         print_directory(child, depth+1)
+
+dirlog_original = open("dirlog_original.txt", "a+")
+
+def print_directory_file(directory, depth=0):
+
+    print(("{}{}|{}\n".format(str(depth), directory.name, str(directory.size))), file=dirlog_original)
+
+    for file in directory.files:
+        print(str(depth) + file.name + '|' + str(file.size), file=dirlog_original)
+    for child in directory.children:
+        print_directory_file(child, depth+1)
 
 if __name__ == "__main__":
     path = ""
