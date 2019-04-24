@@ -7,7 +7,7 @@ from main import print_directory, print_directory_file, build_directory
 
 dirpath = sys.path[0]
 disks = []
-OS = system() # Darwin = Mac, Linux = Linux, Windows = Windows
+OS = system() # Darwin = Mac, Linux, Windows
 
 # Need a dirlog_original and a dirlog_current
 dirlog_original = open("dirlog_original.txt", "a+")
